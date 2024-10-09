@@ -149,34 +149,65 @@ $(function(){
         }*/
     }
 
+    // function addActivity() {
+    //     let date = moment($('#dayPicked').text()).locale('fr').format('L');
+    //     let saved = localStorage.getItem(date) ? JSON.parse(localStorage.getItem(date)) : [];
+    //     let buttonVal = $(this).attr("data-hour");
+    //     let inputVal = $(`input[data-hour=${buttonVal}]`);
+    //     // NO EMPTY INPUTS
+    //     if(inputVal.val() == ''){
+    //         return;
+    //     }
+    //     let savedElement = saved.filter(hour => hour.time == buttonVal);
+    //     // FIRST SAVE GLOBAL || FIRST SAVE PER HOUR
+    //     if(!saved.length || !saved.includes(savedElement[0])){
+    //         saved.push({"time": inputVal.attr("data-hour"), "activity" : [inputVal.val()]});
+    //         // Specify the first item value, position in the activity array
+    //         displayItem(buttonVal, inputVal.val(), 0)
+    //     }else{
+    //         // IF THERE IS A PREVIOUS LOCAL SAVE AT THIS SPOT, ADD THE NEW ITEM TO IT
+    //         saved.forEach(hour => {
+    //             if(hour.time == buttonVal && hour.activity.length){
+    //                 hour.activity.push(inputVal.val());
+    //                 // Specify the latest item value and position in the activity array
+    //                 displayItem(buttonVal, inputVal.val(), hour.activity.length-1)
+    //             }
+    //         })    
+    //     }
+
+    //     localStorage.setItem(date, JSON.stringify(saved));
+    //     inputVal.val('')
+    // }
     function addActivity() {
         let date = moment($('#dayPicked').text()).locale('fr').format('L');
         let saved = localStorage.getItem(date) ? JSON.parse(localStorage.getItem(date)) : [];
         let buttonVal = $(this).attr("data-hour");
         let inputVal = $(`input[data-hour=${buttonVal}]`);
+    
         // NO EMPTY INPUTS
-        if(inputVal.val() == ''){
+        if (inputVal.val() == '') {
             return;
         }
-        let savedElement = saved.filter(hour => hour.time == buttonVal);
+    
+        let savedElement = saved.find(hour => hour.time == buttonVal);
+        
         // FIRST SAVE GLOBAL || FIRST SAVE PER HOUR
-        if(!saved.length || !saved.includes(savedElement[0])){
-            saved.push({"time": inputVal.attr("data-hour"), "activity" : [inputVal.val()]});
+        if (!saved.length || !savedElement) {
+            saved.push({ "time": buttonVal, "activity": [inputVal.val()] });
             // Specify the first item value, position in the activity array
-            displayItem(buttonVal, inputVal.val(), 0)
-        }else{
+            displayItem(buttonVal, inputVal.val(), 0);
+        } else {
             // IF THERE IS A PREVIOUS LOCAL SAVE AT THIS SPOT, ADD THE NEW ITEM TO IT
-            saved.forEach(hour => {
-                if(hour.time == buttonVal && hour.activity.length){
-                    hour.activity.push(inputVal.val());
-                    // Specify the latest item value and position in the activity array
-                    displayItem(buttonVal, inputVal.val(), hour.activity.length-1)
-                }
-            })    
+            if (savedElement.activity) {
+                savedElement.activity.push(inputVal.val());
+                // Specify the latest item value and position in the activity array
+                displayItem(buttonVal, inputVal.val(), savedElement.activity.length - 1);
+            }
         }
-
+    
         localStorage.setItem(date, JSON.stringify(saved));
-        inputVal.val('')
+        console.log('Saved activities:', saved);  // Debugging log
+        inputVal.val('');
     }
 
     // function colorBlocks(){
