@@ -1,15 +1,88 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('background.jpg'); /* Use your local background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+    margin: 0;
+    padding: 20px;
+}
+
 h1 {
-    color: blue;
+    color: #1E90FF; /* Bright blue for the main heading */
+    text-align: center; /* Center align main heading */
 }
 
 h2 {
-    color: blue;
+    color: #1E90FF; /* Bright blue for subheadings */
+    text-align: center; /* Center align h2 */
+    margin-top: 20px; /* Optional: Add margin above the heading */
+}
+
+
+/* Form Styles */
+form {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for the form */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Spacing inside the form */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    max-width: 600px; /* Max width for form */
+    margin: auto; /* Center form */
 }
 
 label {
-    color: black;
+    color: #333; /* Dark text color for better readability */
+    display: block; /* Block display for labels */
+    margin-bottom: 10px; /* Space below each label */
 }
 
+/* Input Styles */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100%; /* Full width inputs */
+    padding: 10px; /* Padding for inputs */
+    margin: 5px 0 15px; /* Space around inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners for inputs */
+    font-size: 16px; /* Larger text for better readability */
+}
+
+/* Button Styles */
+input[type="submit"] {
+    background-color: #1E90FF; /* Bright blue button */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Larger text for better readability */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Link Styles */
 a {
-    color: maroon;
+    color: maroon; /* Maroon link color */
+    text-decoration: underline; /* Underlined links */
+}
+
+a:hover {
+    text-decoration: none; /* Remove underline on hover */
+}
+
+/* Radio Button Styles */
+input[type="radio"] {
+    margin: 0 5px; /* Space around radio buttons */
+}
+
+/* Message Styles */
+footer {
+    text-align: center; /* Center align footer */
+    margin-top: 20px; /* Space above footer */
+    font-size: 18px; /* Font size for footer */
 }
